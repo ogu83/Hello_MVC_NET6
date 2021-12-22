@@ -10,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
 var connectionString = builder.Configuration.GetConnectionString("PostgresDefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));    
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseNpgsql(connectionString, nOptions => nOptions.SetPostgresVersion(9,5)));    
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
